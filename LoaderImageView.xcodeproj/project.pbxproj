@@ -15,6 +15,7 @@
 		EA7092F81565765B00654162 /* VIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7092F71565765B00654162 /* VIAppDelegate.m */; };
 		EA7092FB1565765B00654162 /* VIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7092FA1565765B00654162 /* VIViewController.m */; };
 		EA7092FE1565765B00654162 /* VIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7092FC1565765B00654162 /* VIViewController.xib */; };
+		EA7093061565768800654162 /* VILoaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7093051565768800654162 /* VILoaderImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +23,17 @@
 		EA7092E71565765A00654162 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EA7092E91565765B00654162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		EA7092EB1565765B00654162 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		EA7092EF1565765B00654162 /* LoaderImageView-Info.plist */ = {isa = PBXFileReference; path = "LoaderImageView-Info.plist"; sourceTree = "<group>"; };
+		EA7092EF1565765B00654162 /* LoaderImageView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LoaderImageView-Info.plist"; sourceTree = "<group>"; };
 		EA7092F11565765B00654162 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EA7092F31565765B00654162 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		EA7092F51565765B00654162 /* LoaderImageView-Prefix.pch */ = {isa = PBXFileReference; path = "LoaderImageView-Prefix.pch"; sourceTree = "<group>"; };
-		EA7092F61565765B00654162 /* VIAppDelegate.h */ = {isa = PBXFileReference; path = VIAppDelegate.h; sourceTree = "<group>"; };
+		EA7092F51565765B00654162 /* LoaderImageView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LoaderImageView-Prefix.pch"; sourceTree = "<group>"; };
+		EA7092F61565765B00654162 /* VIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIAppDelegate.h; sourceTree = "<group>"; };
 		EA7092F71565765B00654162 /* VIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIAppDelegate.m; sourceTree = "<group>"; };
-		EA7092F91565765B00654162 /* VIViewController.h */ = {isa = PBXFileReference; path = VIViewController.h; sourceTree = "<group>"; };
+		EA7092F91565765B00654162 /* VIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIViewController.h; sourceTree = "<group>"; };
 		EA7092FA1565765B00654162 /* VIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIViewController.m; sourceTree = "<group>"; };
 		EA7092FD1565765B00654162 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/VIViewController.xib; sourceTree = "<group>"; };
+		EA7093041565768800654162 /* VILoaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILoaderImageView.h; sourceTree = "<group>"; };
+		EA7093051565768800654162 /* VILoaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILoaderImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				EA7092FA1565765B00654162 /* VIViewController.m */,
 				EA7092FC1565765B00654162 /* VIViewController.xib */,
 				EA7092EE1565765B00654162 /* Supporting Files */,
+				EA7093041565768800654162 /* VILoaderImageView.h */,
+				EA7093051565768800654162 /* VILoaderImageView.m */,
 			);
 			path = LoaderImageView;
 			sourceTree = "<group>";
@@ -165,6 +170,7 @@
 				EA7092F41565765B00654162 /* main.m in Sources */,
 				EA7092F81565765B00654162 /* VIAppDelegate.m in Sources */,
 				EA7092FB1565765B00654162 /* VIViewController.m in Sources */,
+				EA7093061565768800654162 /* VILoaderImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "VIViewController.h"
+#import "VILoaderImageView.h"
 
 @interface VIViewController ()
 
@@ -17,7 +18,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    VILoaderImageView *imageView = [[VILoaderImageView alloc] initWithFrame:CGRectMake(100, 100, 250, 250)
+                                                                   imageUrl:@"http://media.threadless.com//imgs/products/3634/636x460design_01.jpg"];
+    [self.view addSubview:imageView];
 }
 
 - (void)viewDidUnload
