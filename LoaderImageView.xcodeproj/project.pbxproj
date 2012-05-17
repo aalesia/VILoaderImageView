@@ -1,0 +1,285 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EA7092E81565765B00654162 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7092E71565765A00654162 /* UIKit.framework */; };
+		EA7092EA1565765B00654162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7092E91565765B00654162 /* Foundation.framework */; };
+		EA7092EC1565765B00654162 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7092EB1565765B00654162 /* CoreGraphics.framework */; };
+		EA7092F21565765B00654162 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA7092F01565765B00654162 /* InfoPlist.strings */; };
+		EA7092F41565765B00654162 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7092F31565765B00654162 /* main.m */; };
+		EA7092F81565765B00654162 /* VIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7092F71565765B00654162 /* VIAppDelegate.m */; };
+		EA7092FB1565765B00654162 /* VIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7092FA1565765B00654162 /* VIViewController.m */; };
+		EA7092FE1565765B00654162 /* VIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7092FC1565765B00654162 /* VIViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		EA7092E31565765A00654162 /* LoaderImageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoaderImageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA7092E71565765A00654162 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		EA7092E91565765B00654162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		EA7092EB1565765B00654162 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		EA7092EF1565765B00654162 /* LoaderImageView-Info.plist */ = {isa = PBXFileReference; path = "LoaderImageView-Info.plist"; sourceTree = "<group>"; };
+		EA7092F11565765B00654162 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		EA7092F31565765B00654162 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		EA7092F51565765B00654162 /* LoaderImageView-Prefix.pch */ = {isa = PBXFileReference; path = "LoaderImageView-Prefix.pch"; sourceTree = "<group>"; };
+		EA7092F61565765B00654162 /* VIAppDelegate.h */ = {isa = PBXFileReference; path = VIAppDelegate.h; sourceTree = "<group>"; };
+		EA7092F71565765B00654162 /* VIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIAppDelegate.m; sourceTree = "<group>"; };
+		EA7092F91565765B00654162 /* VIViewController.h */ = {isa = PBXFileReference; path = VIViewController.h; sourceTree = "<group>"; };
+		EA7092FA1565765B00654162 /* VIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIViewController.m; sourceTree = "<group>"; };
+		EA7092FD1565765B00654162 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/VIViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EA7092E01565765A00654162 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA7092E81565765B00654162 /* UIKit.framework in Frameworks */,
+				EA7092EA1565765B00654162 /* Foundation.framework in Frameworks */,
+				EA7092EC1565765B00654162 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EA7092D81565765A00654162 = {
+			isa = PBXGroup;
+			children = (
+				EA7092ED1565765B00654162 /* LoaderImageView */,
+				EA7092E61565765A00654162 /* Frameworks */,
+				EA7092E41565765A00654162 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA7092E41565765A00654162 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA7092E31565765A00654162 /* LoaderImageView.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA7092E61565765A00654162 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA7092E71565765A00654162 /* UIKit.framework */,
+				EA7092E91565765B00654162 /* Foundation.framework */,
+				EA7092EB1565765B00654162 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA7092ED1565765B00654162 /* LoaderImageView */ = {
+			isa = PBXGroup;
+			children = (
+				EA7092F61565765B00654162 /* VIAppDelegate.h */,
+				EA7092F71565765B00654162 /* VIAppDelegate.m */,
+				EA7092F91565765B00654162 /* VIViewController.h */,
+				EA7092FA1565765B00654162 /* VIViewController.m */,
+				EA7092FC1565765B00654162 /* VIViewController.xib */,
+				EA7092EE1565765B00654162 /* Supporting Files */,
+			);
+			path = LoaderImageView;
+			sourceTree = "<group>";
+		};
+		EA7092EE1565765B00654162 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				EA7092EF1565765B00654162 /* LoaderImageView-Info.plist */,
+				EA7092F01565765B00654162 /* InfoPlist.strings */,
+				EA7092F31565765B00654162 /* main.m */,
+				EA7092F51565765B00654162 /* LoaderImageView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EA7092E21565765A00654162 /* LoaderImageView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EA7093011565765B00654162 /* Build configuration list for PBXNativeTarget "LoaderImageView" */;
+			buildPhases = (
+				EA7092DF1565765A00654162 /* Sources */,
+				EA7092E01565765A00654162 /* Frameworks */,
+				EA7092E11565765A00654162 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LoaderImageView;
+			productName = LoaderImageView;
+			productReference = EA7092E31565765A00654162 /* LoaderImageView.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EA7092DA1565765A00654162 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = VI;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = VOKAL;
+			};
+			buildConfigurationList = EA7092DD1565765A00654162 /* Build configuration list for PBXProject "LoaderImageView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = EA7092D81565765A00654162;
+			productRefGroup = EA7092E41565765A00654162 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EA7092E21565765A00654162 /* LoaderImageView */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EA7092E11565765A00654162 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA7092F21565765B00654162 /* InfoPlist.strings in Resources */,
+				EA7092FE1565765B00654162 /* VIViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EA7092DF1565765A00654162 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA7092F41565765B00654162 /* main.m in Sources */,
+				EA7092F81565765B00654162 /* VIAppDelegate.m in Sources */,
+				EA7092FB1565765B00654162 /* VIViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		EA7092F01565765B00654162 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA7092F11565765B00654162 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		EA7092FC1565765B00654162 /* VIViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EA7092FD1565765B00654162 /* en */,
+			);
+			name = VIViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EA7092FF1565765B00654162 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		EA7093001565765B00654162 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EA7093021565765B00654162 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LoaderImageView/LoaderImageView-Prefix.pch";
+				INFOPLIST_FILE = "LoaderImageView/LoaderImageView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		EA7093031565765B00654162 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LoaderImageView/LoaderImageView-Prefix.pch";
+				INFOPLIST_FILE = "LoaderImageView/LoaderImageView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EA7092DD1565765A00654162 /* Build configuration list for PBXProject "LoaderImageView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA7092FF1565765B00654162 /* Debug */,
+				EA7093001565765B00654162 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EA7093011565765B00654162 /* Build configuration list for PBXNativeTarget "LoaderImageView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EA7093021565765B00654162 /* Debug */,
+				EA7093031565765B00654162 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EA7092DA1565765A00654162 /* Project object */;
+}
