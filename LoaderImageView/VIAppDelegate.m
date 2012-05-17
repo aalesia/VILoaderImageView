@@ -17,6 +17,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [self clearTempDirectory];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.viewController = [[VIViewController alloc] initWithNibName:@"VIViewController" bundle:nil];
@@ -50,6 +52,29 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)clearTempDirectory
+{
+    // For error information
+    NSError *error;
+    // Create file manager
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    // Point to Document directory
+    NSString *documentsDirectory = NSTemporaryDirectory();
+    NSArray *documentsArray = [fileMgr contentsOfDirectoryAtPath:documentsDirectory
+                                                           error:nil];
+    
+    for (int i = 0; i < [documentsArray count]; i++) {
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:
+                            [documentsArray objectAtIndex:i]];
+        [fileMgr removeItemAtPath:path error:&error];
+    }
+    
+#if DEBUG
+    NSLog(@"Documents directory: %@",
+          [fileMgr contentsOfDirectoryAtPath:documentsDirectory error:&error]);
+#endif
 }
 
 @end

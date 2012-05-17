@@ -33,6 +33,11 @@
 
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl
 {
+    return [self initWithFrame:frame imageUrl:imageUrl animated:NO];
+}
+
+- (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated
+{
     self = [super initWithFrame:frame];
     if (self) {
         self.contentMode = UIViewContentModeScaleAspectFill;
@@ -55,11 +60,27 @@
                 [_activityIndicator removeFromSuperview];
                 _activityIndicator = nil;
                 
-                self.image = image;
+                if (animated) {
+                    [self animateImage:image];
+                } else {
+                    self.image = image;
+                }
             }];
         }
     }
     return self;
+}
+
+- (void)animateImage:(UIImage *)image
+{
+    self.image = image;
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.2];
+    [animation setType:kCATransitionFade];
+    [animation setSubtype:kCATransitionFade];
+    
+    [[self layer] addAnimation:animation forKey:@"DisplayView"];
 }
 
 + (void)cacheImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion

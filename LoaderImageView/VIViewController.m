@@ -20,7 +20,8 @@
     [super viewDidLoad];
     
     VILoaderImageView *imageView = [[VILoaderImageView alloc] initWithFrame:CGRectMake(100, 100, 250, 250)
-                                                                   imageUrl:@"http://media.threadless.com//imgs/products/3634/636x460design_01.jpg"];
+                                                                   imageUrl:@"http://media.threadless.com//imgs/products/2943/636x460design_01.jpg" 
+                                                                   animated:YES];
     [self.view addSubview:imageView];
 }
 

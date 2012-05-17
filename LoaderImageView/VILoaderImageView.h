@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface VILoaderImageView : UIImageView
 
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl;
+- (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated;
 
 @end

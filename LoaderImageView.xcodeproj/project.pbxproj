@@ -16,6 +16,7 @@
 		EA7092FB1565765B00654162 /* VIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7092FA1565765B00654162 /* VIViewController.m */; };
 		EA7092FE1565765B00654162 /* VIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7092FC1565765B00654162 /* VIViewController.xib */; };
 		EA7093061565768800654162 /* VILoaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7093051565768800654162 /* VILoaderImageView.m */; };
+		EA70930E156594EB00654162 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA70930D156594EB00654162 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		EA7092FD1565765B00654162 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/VIViewController.xib; sourceTree = "<group>"; };
 		EA7093041565768800654162 /* VILoaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILoaderImageView.h; sourceTree = "<group>"; };
 		EA7093051565768800654162 /* VILoaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILoaderImageView.m; sourceTree = "<group>"; };
+		EA70930D156594EB00654162 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EA70930E156594EB00654162 /* QuartzCore.framework in Frameworks */,
 				EA7092E81565765B00654162 /* UIKit.framework in Frameworks */,
 				EA7092EA1565765B00654162 /* Foundation.framework in Frameworks */,
 				EA7092EC1565765B00654162 /* CoreGraphics.framework in Frameworks */,
@@ -70,6 +73,7 @@
 		EA7092E61565765A00654162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA70930D156594EB00654162 /* QuartzCore.framework */,
 				EA7092E71565765A00654162 /* UIKit.framework */,
 				EA7092E91565765B00654162 /* Foundation.framework */,
 				EA7092EB1565765B00654162 /* CoreGraphics.framework */,
