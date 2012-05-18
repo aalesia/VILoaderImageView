@@ -40,6 +40,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = [UIColor darkGrayColor];
         self.contentMode = UIViewContentModeScaleAspectFill;
         self.clipsToBounds = YES;
         
