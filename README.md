@@ -9,7 +9,7 @@ This class requires the QuartzCore framework for it's fade in animation.
 
 ##Instance Methods
 
-* - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated;
+* -(id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated;
 
     * frame
         * Sets the frame for the image view.
@@ -20,7 +20,7 @@ This class requires the QuartzCore framework for it's fade in animation.
         
     This method initializes the frame and proceeds to call setImageUrl:animated:.
 
-* - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl;
+* -(id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl;
 
     * frame
         * Sets the frame for the image view.
@@ -30,7 +30,7 @@ This class requires the QuartzCore framework for it's fade in animation.
     This method called initWithFrame:imageUrl:animated: and sets animated to NO.
 
 
-* - (void)setImageUrl:(NSString *)imageUrl animated:(BOOL)animated;
+* -(void)setImageUrl:(NSString *)imageUrl animated:(BOOL)animated;
 
     * imageUrl
         * The location of the image that is going to be displayed.
@@ -39,7 +39,7 @@ This class requires the QuartzCore framework for it's fade in animation.
         
     This method checks to see if the given image exists in the cache. If it does, it will display it immediately. If the image does not exist, it will display an activity indicator while pulling the image down. Once it finishes downloading the image, it will either fade in if animate is YES or simply replace the image.
 
-* - (void)setImageUrl:(NSString *)imageUrl;
+* -(void)setImageUrl:(NSString *)imageUrl;
 
     * imageUrl
         * The location of the image that is going to be displayed.
