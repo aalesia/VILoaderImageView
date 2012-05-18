@@ -22,11 +22,15 @@
 
 @synthesize activityIndicator = _activityIndicator;
 
+#pragma mark - Public Methods
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.backgroundColor = [UIColor darkGrayColor];
+        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.clipsToBounds = YES;
     }
     return self;
 }
@@ -38,39 +42,51 @@
 
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated
 {
-    self = [super initWithFrame:frame];
+    self = [self initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor darkGrayColor];
-        self.contentMode = UIViewContentModeScaleAspectFill;
-        self.clipsToBounds = YES;
-        
-        UIImage *image = [VILoaderImageView getCachedImage:imageUrl];
-        
-        if (image != nil) {
-            self.image = image;
-        } else {
-            _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 
-                                                                                           self.frame.size.width,
-                                                                                           self.frame.size.height)];
-            _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-            [_activityIndicator startAnimating];
-            [self addSubview:_activityIndicator];
-            
-            [VILoaderImageView cacheImage:imageUrl completion:^(UIImage *image) {
-                [_activityIndicator stopAnimating];
-                [_activityIndicator removeFromSuperview];
-                _activityIndicator = nil;
-                
-                if (animated) {
-                    [self animateImage:image];
-                } else {
-                    self.image = image;
-                }
-            }];
-        }
+        [self setImageUrl:imageUrl animated:animated];
     }
     return self;
 }
+
+#pragma mark - Instance Methods
+
+- (void)setImageUrl:(NSString *)imageUrl
+{
+    [self setImageUrl:imageUrl animated:NO];
+}
+
+- (void)setImageUrl:(NSString *)imageUrl animated:(BOOL)animated
+{
+    UIImage *image = [VILoaderImageView getCachedImage:imageUrl];
+    
+    if (image != nil) {
+        self.image = image;
+    } else {
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 
+                                                                                       self.frame.size.width,
+                                                                                       self.frame.size.height)];
+        _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+        [_activityIndicator startAnimating];
+        [self addSubview:_activityIndicator];
+        
+        [VILoaderImageView cacheImage:imageUrl completion:^(UIImage *image) {
+            [_activityIndicator stopAnimating];
+            [_activityIndicator removeFromSuperview];
+            _activityIndicator = nil;
+            
+            if (animated) {
+                [self animateImage:image];
+            } else {
+                self.image = image;
+            }
+        }];
+    }
+}
+
+#pragma mark - Private Methods
+
+#pragma mark - Instance Methods
 
 - (void)animateImage:(UIImage *)image
 {
@@ -83,6 +99,8 @@
     
     [[self layer] addAnimation:animation forKey:@"DisplayView"];
 }
+
+#pragma mark - Class Methods
 
 + (void)cacheImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion
 {
