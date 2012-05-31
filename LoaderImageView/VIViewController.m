@@ -199,6 +199,10 @@
 - (void)changeImageForImageView:(VILoaderImageView *)imageView
 {
     [imageView setImageUrl:[self urlForCurrentIndex] animated:YES];
+    
+    [self performSelector:@selector(changeImageForImageView:)
+               withObject:imageView
+               afterDelay:DELAY];
 }
 
 - (NSString *)urlForCurrentIndex

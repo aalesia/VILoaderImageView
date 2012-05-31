@@ -22,6 +22,19 @@
 
 @synthesize activityIndicator = _activityIndicator;
 
+static NSOperationQueue *_queue = nil;
+
++ (NSOperationQueue *)getQueue
+{    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _queue = [[NSOperationQueue alloc] init];
+        [_queue setMaxConcurrentOperationCount:5];
+    });
+    
+    return _queue;
+}
+
 #pragma mark - Public Methods
 
 - (id)initWithFrame:(CGRect)frame
@@ -63,23 +76,25 @@
     if (image != nil) {
         self.image = image;
     } else {
-        _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 
-                                                                                       self.frame.size.width,
-                                                                                       self.frame.size.height)];
-        _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
-        [_activityIndicator startAnimating];
-        [self addSubview:_activityIndicator];
-        
-        [VILoaderImageView cacheImage:imageUrl completion:^(UIImage *image) {
-            [_activityIndicator stopAnimating];
-            [_activityIndicator removeFromSuperview];
-            _activityIndicator = nil;
+        [[VILoaderImageView getQueue] addOperationWithBlock:^{
+            _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 
+                                                                                           self.frame.size.width,
+                                                                                           self.frame.size.height)];
+            _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+            [_activityIndicator startAnimating];
+            [self addSubview:_activityIndicator];
             
-            if (animated) {
-                [self animateImage:image];
-            } else {
-                self.image = image;
-            }
+            [VILoaderImageView cacheImage:imageUrl completion:^(UIImage *image) {
+                [_activityIndicator stopAnimating];
+                [_activityIndicator removeFromSuperview];
+                _activityIndicator = nil;
+                
+                if (animated) {
+                    [self animateImage:image];
+                } else {
+                    self.image = image;
+                }
+            }];
         }];
     }
 }
@@ -104,6 +119,10 @@
 
 + (void)cacheImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion
 {
+    __block UIBackgroundTaskIdentifier bgTask = [[UIApplication sharedApplication] beginBackgroundTaskWithExpirationHandler:^{
+        [[UIApplication sharedApplication] endBackgroundTask:bgTask];
+    }];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         NSURL *imageURL = [NSURL URLWithString:imageURLString];
         
@@ -132,6 +151,8 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             completion(image);
         });
+        
+        [[UIApplication sharedApplication] endBackgroundTask:bgTask];
     });
 }
 
