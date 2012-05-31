@@ -9,6 +9,7 @@
 #import "VILoaderImageView.h"
 
 #define TMP NSTemporaryDirectory()
+#define MAX_CONCURRENT_OPERATIONS       5
 
 @interface VILoaderImageView ()
 
@@ -29,7 +30,7 @@ static NSOperationQueue *_queue = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _queue = [[NSOperationQueue alloc] init];
-        [_queue setMaxConcurrentOperationCount:5];
+        [_queue setMaxConcurrentOperationCount:MAX_CONCURRENT_OPERATIONS];
     });
     
     return _queue;
