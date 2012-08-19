@@ -22,6 +22,7 @@
 @implementation VILoaderImageView
 
 @synthesize activityIndicator = _activityIndicator;
+@synthesize indicatorColor = _indicatorColor;
 
 static NSOperationQueue *_queue = nil;
 
@@ -83,6 +84,10 @@ static NSOperationQueue *_queue = nil;
                                                                                                self.frame.size.width,
                                                                                                self.frame.size.height)];
                 _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+                
+                if (_indicatorColor != nil) {
+                    [_activityIndicator setColor:_indicatorColor];
+                }
             }
             
             [_activityIndicator startAnimating];

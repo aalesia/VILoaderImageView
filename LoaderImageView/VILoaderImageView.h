@@ -11,6 +11,8 @@
 
 @interface VILoaderImageView : UIImageView
 
+@property (strong, nonatomic) UIColor *indicatorColor;
+
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl;
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated;
 - (void)setImageUrl:(NSString *)imageUrl;
