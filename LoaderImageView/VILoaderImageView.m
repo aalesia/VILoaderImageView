@@ -78,10 +78,13 @@ static NSOperationQueue *_queue = nil;
         self.image = image;
     } else {
         [[VILoaderImageView getQueue] addOperationWithBlock:^{
-            _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 
-                                                                                           self.frame.size.width,
-                                                                                           self.frame.size.height)];
-            _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+            if (_activityIndicator == nil) {
+                _activityIndicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0,
+                                                                                               self.frame.size.width,
+                                                                                               self.frame.size.height)];
+                _activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+            }
+            
             [_activityIndicator startAnimating];
             [self addSubview:_activityIndicator];
             
