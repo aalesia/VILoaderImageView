@@ -17,5 +17,7 @@
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated;
 - (void)setImageUrl:(NSString *)imageUrl;
 - (void)setImageUrl:(NSString *)imageUrl animated:(BOOL)animated;
+- (void)setImageUrl:(NSString *)imageUrl defaultImage:(UIImage *)defaultImage;
+- (void)setImageUrl:(NSString *)imageUrl defaultImage:(UIImage *)defaultImage animated:(BOOL)animated;
 
 @end
