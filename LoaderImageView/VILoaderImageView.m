@@ -8,8 +8,8 @@
 
 #import "VILoaderImageView.h"
 
-#define TMP NSTemporaryDirectory()
-#define MAX_CONCURRENT_OPERATIONS       5
+#define TMP     NSTemporaryDirectory()
+#define CACHE   [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0]
 
 @interface VILoaderImageView ()
 
@@ -31,7 +31,7 @@ static NSOperationQueue *_queue = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _queue = [[NSOperationQueue alloc] init];
-        [_queue setMaxConcurrentOperationCount:MAX_CONCURRENT_OPERATIONS];
+        [_queue setMaxConcurrentOperationCount:NSOperationQueueDefaultMaxConcurrentOperationCount];
     });
     
     return _queue;
@@ -182,7 +182,7 @@ static NSOperationQueue *_queue = nil;
     NSString *filename = [[imageURLString stringByReplacingOccurrencesOfString:@":" withString:@""]
                           stringByReplacingOccurrencesOfString:@"/" withString:@""];
     
-    NSString *uniquePath = [TMP stringByAppendingPathComponent: filename];
+    NSString *uniquePath = [CACHE stringByAppendingPathComponent: filename];
     
     UIImage *image = nil;
     
