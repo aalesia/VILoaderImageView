@@ -45,3 +45,18 @@ This class requires the QuartzCore framework for it's fade in animation.
         * The location of the image that is going to be displayed.
         
     This method called setImageUrl:animated: and sets animated to NO.
+    
+## Define Variable Explanations
+
+   * Length of Cache - LENGTH_OF_CACHE
+      * Set this to the number of seconds you'd like the cache to persist for. If the cached image is older than that length of time, it will be reloaded from it's URL and recached.
+   
+   * Decompress - PREDECOMPRESS
+      * Set this to 1 if you'd like the UIImages to be returned decompressed, 0 if not. Decompressed images require more memory, but will improve draw times of UIImages.
+   
+   * Number of items in local cache - LOCAL_CACHE_MAX_ITEMS
+      * Set this to the number of items you'd like held in the local memory cache, more items means more caching, but also more required memory. Find your own sweet spot.
+   
+   * Max Concurrent Operations - MAX_CONCURRENT_OPERATIONS
+      * Set this to the number of simultaneously running image loading operations you'd like.
+
