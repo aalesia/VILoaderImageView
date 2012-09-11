@@ -46,7 +46,7 @@ This class requires the QuartzCore framework for it's fade in animation.
         
     This method called setImageUrl:animated: and sets animated to NO.
     
-## Define Variable Explanations
+## Define Variables
 
    * Length of Cache - LENGTH_OF_CACHE
       * Set this to the number of seconds you'd like the cache to persist for. If the cached image is older than that length of time, it will be reloaded from it's URL and recached.
