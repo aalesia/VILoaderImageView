@@ -10,10 +10,20 @@
 #import <QuartzCore/QuartzCore.h>
 
 @interface VILoaderImageView : UIImageView
+{
+
+}
 
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl;
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated;
 - (void)setImageUrl:(NSString *)imageUrl;
 - (void)setImageUrl:(NSString *)imageUrl animated:(BOOL)animated;
+- (void)setImageUrlClearingCache:(NSString *)imageUrl animated:(BOOL)animated;
 
+- (void)startIndicatorAnimating;
+- (void)stopIndicatorAnimating;
+
+- (void)cancel;
+
++ (void)cacheImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion;
 @end
