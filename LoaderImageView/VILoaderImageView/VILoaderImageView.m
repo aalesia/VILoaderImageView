@@ -342,12 +342,10 @@ static NSMutableArray *_localCache = nil;
     
     [VILoaderImageView addImageToLocalCache:image withKey:[[uniquePath componentsSeparatedByString:@"/"] lastObject]];
     
-    if([[imageURL absoluteString] rangeOfString:@".jpg" options:NSCaseInsensitiveSearch].location != NSNotFound || [[imageURL absoluteString] rangeOfString:@".jpeg" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+    if([[imageURL absoluteString] rangeOfString:@".png" options:NSCaseInsensitiveSearch].location != NSNotFound) {
         [UIImagePNGRepresentation(image) writeToFile:uniquePath atomically: YES];
-        
-    }
-    else {
-        [UIImageJPEGRepresentation(image, .2) writeToFile:uniquePath atomically: YES];
+    }else {
+        [UIImageJPEGRepresentation(image, .5) writeToFile:uniquePath atomically: YES];
     }
     
     return image;
