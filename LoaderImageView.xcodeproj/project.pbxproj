@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B6B3FF415FF870D00EA0F80 /* UIImage+Decompression.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6B3FF115FF870D00EA0F80 /* UIImage+Decompression.m */; };
+		6B6B3FF515FF870D00EA0F80 /* VILoaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6B3FF315FF870D00EA0F80 /* VILoaderImageView.m */; };
 		EA7092E81565765B00654162 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7092E71565765A00654162 /* UIKit.framework */; };
 		EA7092EA1565765B00654162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7092E91565765B00654162 /* Foundation.framework */; };
 		EA7092EC1565765B00654162 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA7092EB1565765B00654162 /* CoreGraphics.framework */; };
@@ -15,11 +17,14 @@
 		EA7092F81565765B00654162 /* VIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7092F71565765B00654162 /* VIAppDelegate.m */; };
 		EA7092FB1565765B00654162 /* VIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7092FA1565765B00654162 /* VIViewController.m */; };
 		EA7092FE1565765B00654162 /* VIViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = EA7092FC1565765B00654162 /* VIViewController.xib */; };
-		EA7093061565768800654162 /* VILoaderImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7093051565768800654162 /* VILoaderImageView.m */; };
 		EA70930E156594EB00654162 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA70930D156594EB00654162 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6B6B3FF015FF870D00EA0F80 /* UIImage+Decompression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Decompression.h"; sourceTree = "<group>"; };
+		6B6B3FF115FF870D00EA0F80 /* UIImage+Decompression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Decompression.m"; sourceTree = "<group>"; };
+		6B6B3FF215FF870D00EA0F80 /* VILoaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILoaderImageView.h; sourceTree = "<group>"; };
+		6B6B3FF315FF870D00EA0F80 /* VILoaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILoaderImageView.m; sourceTree = "<group>"; };
 		EA7092E31565765A00654162 /* LoaderImageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoaderImageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA7092E71565765A00654162 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EA7092E91565765B00654162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -33,8 +38,6 @@
 		EA7092F91565765B00654162 /* VIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VIViewController.h; sourceTree = "<group>"; };
 		EA7092FA1565765B00654162 /* VIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VIViewController.m; sourceTree = "<group>"; };
 		EA7092FD1565765B00654162 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/VIViewController.xib; sourceTree = "<group>"; };
-		EA7093041565768800654162 /* VILoaderImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILoaderImageView.h; sourceTree = "<group>"; };
-		EA7093051565768800654162 /* VILoaderImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILoaderImageView.m; sourceTree = "<group>"; };
 		EA70930D156594EB00654162 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -53,6 +56,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B6B3FEF15FF870D00EA0F80 /* VILoaderImageView */ = {
+			isa = PBXGroup;
+			children = (
+				6B6B3FF015FF870D00EA0F80 /* UIImage+Decompression.h */,
+				6B6B3FF115FF870D00EA0F80 /* UIImage+Decompression.m */,
+				6B6B3FF215FF870D00EA0F80 /* VILoaderImageView.h */,
+				6B6B3FF315FF870D00EA0F80 /* VILoaderImageView.m */,
+			);
+			path = VILoaderImageView;
+			sourceTree = "<group>";
+		};
 		EA7092D81565765A00654162 = {
 			isa = PBXGroup;
 			children = (
@@ -84,14 +98,13 @@
 		EA7092ED1565765B00654162 /* LoaderImageView */ = {
 			isa = PBXGroup;
 			children = (
+				6B6B3FEF15FF870D00EA0F80 /* VILoaderImageView */,
 				EA7092F61565765B00654162 /* VIAppDelegate.h */,
 				EA7092F71565765B00654162 /* VIAppDelegate.m */,
 				EA7092F91565765B00654162 /* VIViewController.h */,
 				EA7092FA1565765B00654162 /* VIViewController.m */,
 				EA7092FC1565765B00654162 /* VIViewController.xib */,
 				EA7092EE1565765B00654162 /* Supporting Files */,
-				EA7093041565768800654162 /* VILoaderImageView.h */,
-				EA7093051565768800654162 /* VILoaderImageView.m */,
 			);
 			path = LoaderImageView;
 			sourceTree = "<group>";
@@ -174,7 +187,8 @@
 				EA7092F41565765B00654162 /* main.m in Sources */,
 				EA7092F81565765B00654162 /* VIAppDelegate.m in Sources */,
 				EA7092FB1565765B00654162 /* VIViewController.m in Sources */,
-				EA7093061565768800654162 /* VILoaderImageView.m in Sources */,
+				6B6B3FF415FF870D00EA0F80 /* UIImage+Decompression.m in Sources */,
+				6B6B3FF515FF870D00EA0F80 /* VILoaderImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +302,7 @@
 				EA7093031565765B00654162 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
