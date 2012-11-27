@@ -14,21 +14,20 @@
 
 }
 
-+ (NSOperationQueue *)getQueue;
-+ (void)cacheImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion;
+@property (strong, nonatomic) UIColor *indicatorColor;
 
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl;
 - (id)initWithFrame:(CGRect)frame imageUrl:(NSString *)imageUrl animated:(BOOL)animated;
-
 - (void)setImageUrl:(NSString *)imageUrl;
 - (void)setImageUrl:(NSString *)imageUrl animated:(BOOL)animated;
+- (void)setImageUrl:(NSString *)imageUrl defaultImage:(UIImage *)defaultImage;
+- (void)setImageUrl:(NSString *)imageUrl defaultImage:(UIImage *)defaultImage animated:(BOOL)animated;
 - (void)setImageUrlClearingCache:(NSString *)imageUrl animated:(BOOL)animated;
-- (void)setImageUrl:(NSString *)imageUrl completion:(void (^)(UIImage *image))completion;
 
 - (void)startIndicatorAnimating;
 - (void)stopIndicatorAnimating;
 
 - (void)cancel;
 
-
++ (void)cacheImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion;
 @end
