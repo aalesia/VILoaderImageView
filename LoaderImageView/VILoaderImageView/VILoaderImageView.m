@@ -15,6 +15,7 @@
 
 #define LENGTH_OF_CACHE                 86400
 
+#define PREDECOMPRESS                   1
 #define PREDECOMPRESS                   0
 
 #define LOCAL_CACHE_MAX_ITEMS           50
