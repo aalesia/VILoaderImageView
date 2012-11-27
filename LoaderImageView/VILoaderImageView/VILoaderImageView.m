@@ -151,6 +151,18 @@ static NSMutableArray *_localCache = nil;
     [locallyCached addObject:imageDict];
 }
 
+- (void)setImageUrl:(NSString *)imageUrl defaultImage:(UIImage *)defaultImage
+{
+    [self setImageUrl:imageUrl defaultImage:defaultImage animated:NO];
+}
+
+- (void)setImageUrl:(NSString *)imageUrl defaultImage:(UIImage *)defaultImage animated:(BOOL)animated
+{
+    self.image = defaultImage;
+    
+    [self setImageUrl:imageUrl animated:animated];
+}
+
 - (void)setImageUrl:(NSString *)imageUrl
 {
     [self setImageUrl:imageUrl animated:NO];
