@@ -16,6 +16,7 @@
 #define LENGTH_OF_CACHE                 86400
 
 #define PREDECOMPRESS                   1
+#define PREDECOMPRESS                   0
 
 #define LOCAL_CACHE_MAX_ITEMS           50
 
@@ -67,9 +68,9 @@ static NSMutableArray *_localCache = nil;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = [UIColor darkGrayColor];
-        self.contentMode = UIViewContentModeScaleAspectFill;
+        self.backgroundColor = [UIColor clearColor];
         self.clipsToBounds = YES;
+        self.opaque = NO;
     }
     return self;
 }
@@ -165,7 +166,34 @@ static NSMutableArray *_localCache = nil;
 
 - (void)setImageUrl:(NSString *)imageUrl
 {
-    [self setImageUrl:imageUrl animated:NO];
+    [self setImageUrl:imageUrl animated:YES];
+}
+
+- (void)setImageUrl:(NSString *)imageUrl completion:(void (^)(UIImage *image))completion
+{
+    NSOperationQueue *queue = [VILoaderImageView getQueue];
+    [queue addOperationWithBlock:^{
+        
+        if (_activityIndicator == nil) {
+            [self startIndicatorAnimating];
+        }
+        
+        [VILoaderImageView getCachedImage:imageUrl completion:^(UIImage *image) {
+            if (image == nil) {
+                [VILoaderImageView recacheImage:imageUrl completion:^(UIImage *image) {
+                    [self stopIndicatorAnimating];
+                    [self animateImage:image];
+                    completion(image);
+                }];
+            }else{
+                [self stopIndicatorAnimating];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self animateImage:image];
+                    completion(image);
+                });
+            }
+        }];
+    }];
 }
 
 - (void)setImageUrl:(NSString *)imageUrl animated:(BOOL)animated
@@ -175,27 +203,35 @@ static NSMutableArray *_localCache = nil;
     dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
         image = [VILoaderImageView getCachedImage:imageUrl];
     });
-        if (image != nil) {
-            self.image = image;
-        } else {
-            [[VILoaderImageView getQueue] addOperationWithBlock:^{
-                if (_activityIndicator == nil) {
-                    [self startIndicatorAnimating];
-                }
-                
-                [VILoaderImageView cacheImage:imageUrl completion:^(UIImage *image) {
-                    [self stopIndicatorAnimating];
-                    if (!cancelled) {
+    if (image != nil) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (animated) {
+                [self animateImage:image];
+            } else {
+                self.image = image;
+            }
+        });
+    } else {
+        [[VILoaderImageView getQueue] addOperationWithBlock:^{
+            if (_activityIndicator == nil) {
+                [self startIndicatorAnimating];
+            }
+            
+            [VILoaderImageView cacheImage:imageUrl completion:^(UIImage *image) {
+                [self stopIndicatorAnimating];
+                if (!cancelled) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
                         if (animated) {
                             [self animateImage:image];
                         } else {
                             self.image = image;
                         }
-                    }
-                }];
+                    });
+                }
             }];
-            cancelledPtr = &cancelled;
-        }
+        }];
+        cancelledPtr = &cancelled;
+    }
 }
 
 - (void)setImageUrlClearingCache:(NSString *)imageUrl animated:(BOOL)animated
@@ -251,13 +287,17 @@ static NSMutableArray *_localCache = nil;
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.image = image;
-        
         CATransition *animation = [CATransition animation];
         [animation setDuration:0.2];
         [animation setType:kCATransitionFade];
         [animation setSubtype:kCATransitionFade];
         
         [[self layer] addAnimation:animation forKey:@"DisplayView"];
+
+        self.image = image;
+        
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width+1, self.frame.size.height+1);
+        self.frame = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.frame.size.width-1, self.frame.size.height-1);
     });
 }
 
@@ -273,10 +313,8 @@ static NSMutableArray *_localCache = nil;
         NSURL *imageURL = [NSURL URLWithString:imageURLString];
         
         // Generate a unique path to a resource representing the image you want
-        NSString *filename = [[imageURLString stringByReplacingOccurrencesOfString:@":" withString:@""]
-                              stringByReplacingOccurrencesOfString:@"/" withString:@""];
         
-        NSString *uniquePath = [TMP stringByAppendingPathComponent:filename];
+        NSString *uniquePath = [self getUniquePathFromURL:imageURLString];
         UIImage *image = nil;
         
         NSFileManager*fm = [NSFileManager defaultManager];
@@ -309,10 +347,10 @@ static NSMutableArray *_localCache = nil;
         NSURL *imageURL = [NSURL URLWithString:imageURLString];
         
         // Generate a unique path to a resource representing the image you want
-        NSString *filename = [[imageURLString stringByReplacingOccurrencesOfString:@":" withString:@""]
-                              stringByReplacingOccurrencesOfString:@"/" withString:@""];
+
         
-        NSString *uniquePath = [TMP stringByAppendingPathComponent:filename];
+        NSString *uniquePath = [self getUniquePathFromURL:imageURLString];
+        
         UIImage *image = nil;
         
         NSFileManager*fm = [NSFileManager defaultManager];
@@ -327,7 +365,7 @@ static NSMutableArray *_localCache = nil;
             NSDictionary*attrs = [fm attributesOfItemAtPath:uniquePath error:nil];
             NSDate *date = (NSDate*)[attrs objectForKey: NSFileCreationDate];
 
-            if ([date timeIntervalSinceNow] < LENGTH_OF_CACHE && LENGTH_OF_CACHE != -1){
+            if ([date timeIntervalSinceNow] < -LENGTH_OF_CACHE && LENGTH_OF_CACHE != -1){
                 [fm removeItemAtPath:uniquePath error:nil];
                 image = [VILoaderImageView writeFile:imageURL toPath:uniquePath];
             }else{
@@ -351,16 +389,19 @@ static NSMutableArray *_localCache = nil;
 
     NSData *data = [[NSData alloc] initWithContentsOfURL:imageURL];
     UIImage* image = [[UIImage alloc] initWithData: data];
-    
-    [VILoaderImageView addImageToLocalCache:image withKey:[[uniquePath componentsSeparatedByString:@"/"] lastObject]];
+    //Rescale as a retina image.
+    image = [UIImage imageWithCGImage:[image CGImage] scale:2.0 orientation:UIImageOrientationUp];
     
     if([[imageURL absoluteString] rangeOfString:@".jpg" options:NSCaseInsensitiveSearch].location != NSNotFound || [[imageURL absoluteString] rangeOfString:@".jpeg" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+        [UIImageJPEGRepresentation(image, .8) writeToFile:uniquePath atomically: YES];
+    } else {
         [UIImagePNGRepresentation(image) writeToFile:uniquePath atomically: YES];
         
     }
-    else {
-        [UIImageJPEGRepresentation(image, .2) writeToFile:uniquePath atomically: YES];
-    }
+    
+    
+    
+    [VILoaderImageView addImageToLocalCache:image withKey:[[uniquePath componentsSeparatedByString:@"/"] lastObject]];
     
     return image;
 
@@ -368,27 +409,54 @@ static NSMutableArray *_localCache = nil;
 
 + (UIImage *)getCachedImage:(NSString *)imageURLString
 {
-    NSString *filename = [[imageURLString stringByReplacingOccurrencesOfString:@":" withString:@""]
-                          stringByReplacingOccurrencesOfString:@"/" withString:@""];
-    
-    NSString *uniquePath = [TMP stringByAppendingPathComponent: filename];
-    
+    NSString *uniquePath = [self getUniquePathFromURL:imageURLString];
     UIImage *image = nil;
     
     //Check for a local cached version
-    image = [VILoaderImageView checkForImageInLocalCache:filename];
+    image = [VILoaderImageView checkForImageInLocalCache:[[uniquePath componentsSeparatedByString:@"/"] lastObject]];
     
     if (image == nil) {
         // Check for a hard cached version
         if([[NSFileManager defaultManager] fileExistsAtPath: uniquePath]) {
-            
-            image = (PREDECOMPRESS?[UIImage imageWithContentsOfFile: uniquePath]:
-                                        [[UIImage alloc] initWithContentsOfFileDecompressed: uniquePath]);
-            
+
+            image = (PREDECOMPRESS?[[UIImage alloc] initWithContentsOfFileDecompressed: uniquePath]:
+                     [UIImage imageWithContentsOfFile: uniquePath]);
+                        [self addImageToLocalCache:image withKey:[[uniquePath componentsSeparatedByString:@"/"]lastObject]];
+            image = [UIImage imageWithCGImage:[image CGImage] scale:4.0 orientation:UIImageOrientationUp];
+
+            NSLog(@"image size %@", NSStringFromCGSize(image.size));
         }
     }
 	
     return image;
+}
+
++ (void)getCachedImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion
+{
+    UIImage *image = [VILoaderImageView getCachedImage:imageURLString];
+    
+    if (image == nil) {
+        [VILoaderImageView cacheImage:imageURLString completion:^(UIImage *image) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                completion(image);
+            }];
+        }];
+    }else{
+        completion(image);
+    }
+    
+
+}
+
++ (NSString *)getUniquePathFromURL:(NSString*)imageURLString
+{
+    NSString *filename = [[imageURLString stringByReplacingOccurrencesOfString:@":" withString:@""]
+                          stringByReplacingOccurrencesOfString:@"/" withString:@""];
+    
+    NSString* uniquePath =  [TMP stringByAppendingPathComponent: filename];
+    uniquePath = [uniquePath stringByAppendingString:@"@2x"];
+    
+    return uniquePath;
 }
 
 @end
