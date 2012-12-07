@@ -105,7 +105,7 @@ static NSMutableArray *_localCache = nil;
     NSArray *results = [[VILoaderImageView getCache] filteredArrayUsingPredicate:predicate];
     
     if ([results count] == 1) {
-        NSLog(@"Cache hit");
+//        NSLog(@"Cache hit");
         NSDictionary*imageDict = [results objectAtIndex:0];
         
         [locallyCached removeObject:imageDict];
@@ -130,7 +130,7 @@ static NSMutableArray *_localCache = nil;
     NSArray *results = [[VILoaderImageView getCache] filteredArrayUsingPredicate:predicate];
     
     if ([results count] == 1) {
-        NSLog(@"Cache hit");
+//        NSLog(@"Cache hit");
         NSDictionary*imageDict = [results objectAtIndex:0];
         
         [locallyCached removeObject:imageDict];
