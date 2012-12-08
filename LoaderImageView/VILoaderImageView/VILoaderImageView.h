@@ -33,6 +33,4 @@
 
 - (void)cancel;
 
-+ (void)cacheImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion;
-
 @end
