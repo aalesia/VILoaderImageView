@@ -27,6 +27,7 @@
 }
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIImage *defaultImage;
 
 + (UIImage *)getCachedImage:(NSString *)imageURLString;
 + (void)cacheImage:(NSString *)imageURLString completion:(void (^)(UIImage *image))completion;
@@ -158,8 +159,7 @@ static NSMutableArray *_localCache = nil;
 
 - (void)setImageUrl:(NSString *)imageUrl defaultImage:(UIImage *)defaultImage animated:(BOOL)animated
 {
-    self.image = defaultImage;
-    
+    self.defaultImage = self.image = defaultImage;
     [self setImageUrl:imageUrl animated:animated];
 }
 
@@ -220,7 +220,9 @@ static NSMutableArray *_localCache = nil;
                 [self stopIndicatorAnimating];
                 if (!cancelled) {
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        if (animated) {
+                        if (nil == image)
+                            self.image = self.defaultImage;
+                        else if (animated) {
                             [self animateImage:image];
                         } else {
                             self.image = image;
@@ -387,6 +389,8 @@ static NSMutableArray *_localCache = nil;
 {
 
     NSData *data = [[NSData alloc] initWithContentsOfURL:imageURL];
+    if (nil == data)
+        return nil;
     UIImage* image = [[UIImage alloc] initWithData: data];
     //Rescale as a retina image.
     image = [UIImage imageWithCGImage:[image CGImage] scale:2.0 orientation:UIImageOrientationUp];
